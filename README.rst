@@ -1,8 +1,10 @@
 Tornado-Babel
 =============
 
-.. image:: https://secure.travis-ci.org/openlabs/tornado-babel.png?branch=master
+.. image:: https://secure.travis-ci.org/openlabs/tornado-babel.png?branch=develop
    :target: http://travis-ci.org/#!/openlabs/tornado-babel
+.. image:: https://coveralls.io/repos/openlabs/tornado-babel/badge.png?branch=develop
+  :target: https://coveralls.io/r/openlabs/tornado-babel
 
 Tornado-Babel adds i18n and l10n support to tornado with the 
 help of babel and speaklater. It has builtin support for date 

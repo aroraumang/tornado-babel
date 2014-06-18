@@ -1,0 +1,5 @@
+[run]
+source = tornadobabel
+
+[report]
+omit = */tests/*, */fabfile.py

@@ -15,6 +15,7 @@ from test_locale import TestLocale
 from test_extract import TestExtract
 from test_merge import TestMerge
 
+
 def test_all():
     loader = TestLoader()
     suite = TestSuite()

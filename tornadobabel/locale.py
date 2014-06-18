@@ -4,7 +4,7 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     The locale support of tornado as such is pretty basic and does not offer
-    support for merging translation catalogs and several other features most 
+    support for merging translation catalogs and several other features most
     multi language applications require.
 
     This module tries to retain the same API as that of tornado.locale while
@@ -19,7 +19,7 @@
 
     :changes:
         12/11/23 - E. PASCUAL (Centre Scientifique et Technique du Batiment):
-            fixed implementation of translations merge process in 
+            fixed implementation of translations merge process in
             load_gettext_translations
 """
 import gettext
@@ -28,7 +28,7 @@ import os
 
 from babel.support import Translations
 from babel.core import Locale as BabelCoreLocale
-from babel import dates, numbers
+from babel import dates
 
 _default_locale = "en_US"
 _translations = {}
@@ -80,7 +80,7 @@ def load_gettext_translations(directory, domain):
                 _translations[lang].merge(translation)
             else:
                 _translations[lang] = translation
-                
+
         except Exception, e:
             logging.error("Cannot load translation for '%s': %s", lang, str(e))
             continue
@@ -179,8 +179,9 @@ class Locale(BabelCoreLocale):
         """
         return dates.format_time(time, format, tzinfo, self)
 
-    def format_timedelta(self, delta, granularity='second',
-                threshold=0.84999999999999998):
+    def format_timedelta(
+        self, delta, granularity='second', threshold=0.84999999999999998
+    ):
         """
         Return a time delta according to the rules of the given locale.
 

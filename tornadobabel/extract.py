@@ -10,8 +10,8 @@
 import ast
 
 from tornado import escape
-from tornado.template import (_UNSET, _DEFAULT_AUTOESCAPE, _TemplateReader,
-    _parse, _File, _Expression)
+from tornado.template import (
+    _UNSET, _DEFAULT_AUTOESCAPE, _TemplateReader, _parse, _File, _Expression)
 
 
 GETTEXT_FUNCTIONS = ('_', '_N', 'gettext', 'ngettext')
@@ -66,12 +66,12 @@ def extract_from_node(expression, gettext_functions=None):
         gettext_functions = GETTEXT_FUNCTIONS
 
     for node in ast.walk(ast.parse(expression.expression)):
-        # Recursively walk through all descendant nodes 
+        # Recursively walk through all descendant nodes
         if isinstance(node, ast.Call):
             # If the type is a function call
             if not (
-                    isinstance(node.func, ast.Name) and \
-                    node.func.id in gettext_functions):
+                isinstance(node.func, ast.Name) and (
+                    node.func.id) in gettext_functions):
                 continue
 
             strings = []
@@ -101,11 +101,11 @@ def extract_tornado(fileobj, keywords, comment_tags, options):
 
 
     :param fileobj: the seekable, file-like object the messages should be
-	            extracted from
+        extracted from
     :param keywords: a list of keywords (i.e. function names) that should be
-	            recognized as translation functions
+        recognized as translation functions
     :param comment_tags: a list of translator tags to search for and include
-	            in the results. (Not implemented yet)
+        in the results. (Not implemented yet)
     :param options: a dictionary of additional options (optional)
     :return: an iterator over ``(lineno, funcname, message, comments)`` tuples
     :rtype: ``iterator``
@@ -118,6 +118,6 @@ def extract_tornado(fileobj, keywords, comment_tags, options):
     for node in walk(template.file):
         if isinstance(node, _Expression):
             for lineno, func, message in extract_from_node(node):
-                # TODO: Implement the comment feature, right now an empty 
+                # TODO: Implement the comment feature, right now an empty
                 # iterable is returned
                 yield lineno, func, message, []
